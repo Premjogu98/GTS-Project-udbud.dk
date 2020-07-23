@@ -9,12 +9,12 @@ import string
 import html
 import re
 from Scraping_things import scrap_data
-# from Insert_On_Datbase import 
+
 
 app = wx.App()
 
 def ChromeDriver():
-    browser = webdriver.Chrome(executable_path=str(f"C:\\chromedriver.exe"))
+    browser = webdriver.Chrome(executable_path=str(f"F:\\chromedriver.exe"))
     browser.get("https://www.udbud.dk/Pages/Tenders/News")
     browser.maximize_window()
     time.sleep(5)

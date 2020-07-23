@@ -36,6 +36,7 @@ def scrap_data(get_htmlsource,Detail):
             SegField[1] = Email
 
             Address = Tender_detail_outerhtml.partition("Adresse</td>")[2].partition("</td>")[0].strip()
+            SegField[8] = Address.partition('href="')[2].partition('"')[0].strip()
             Address = remove_html_tag(Address)
             if 'WWW' in Address:
                 Address = Address.partition("WWW")[0].strip()
@@ -78,7 +79,9 @@ def scrap_data(get_htmlsource,Detail):
                 SegField[24] = Deadline.strip()
 
             CPV_Code = Tender_detail_outerhtml.partition("CPV kode</td>")[2].partition("</td>")[0].replace('\n',' ').strip()
+            CPV_Code = CPV_Code.replace('<br>','prem')
             CPV_Code = remove_html_tag(CPV_Code)
+            CPV_Code = CPV_Code.replace('prem',' ')
 
             SegField[18] = f'{SegField[19]}<br>\nOpgavebeskrivelse: {Description_of_tasks}<br>\nDokumenttype: {document_type}<br>\nOpgavetype: {Job_type}<br>\nTildelingskriterier: {award_criteria}<br>\nAnnonceret: {announced}<br>\nDeadline: {Deadline}<br>\nCPV Code: {CPV_Code}'
 
