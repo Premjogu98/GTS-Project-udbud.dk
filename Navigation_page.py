@@ -14,7 +14,7 @@ from Scraping_things import scrap_data
 app = wx.App()
 
 def ChromeDriver():
-    browser = webdriver.Chrome(executable_path=str(f"F:\\chromedriver.exe"))
+    browser = webdriver.Chrome(executable_path=str(f"C:\\chromedriver.exe"))
     browser.get("https://www.udbud.dk/Pages/Tenders/News")
     browser.maximize_window()
     time.sleep(5)
@@ -84,11 +84,13 @@ def nav_link(tender_link,browser):
                 get_htmlsource = ''
                 for html_table in browser.find_elements_by_xpath('//*[@class="details-table"]'):
                     html_table = html_table.get_attribute('outerHTML').strip()
+                    html_table = html_table.replace('href="/','https://www.udbud.dk/')
                     get_htmlsource += html_table
                     break
                 if get_htmlsource == '':
                     for html_table in browser.find_elements_by_xpath('//*[@class="details-table details-table-big"]'):
                         html_table = html_table.get_attribute('outerHTML').strip()
+                        html_table = html_table.replace('href="/','https://www.udbud.dk/')
                         get_htmlsource += html_table
                         break
                     if get_htmlsource == '':
