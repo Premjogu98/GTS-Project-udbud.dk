@@ -62,6 +62,7 @@ def ChromeDriver():
                     print('Publish Date Alive')
                     tr_count += 1
                 else:
+                    print('This Tender EU-udbud')
                     tr_count += 1
             else:
                 print('Publish Date Dead')

@@ -75,8 +75,11 @@ def scrap_data(get_htmlsource,Detail):
             main_Deadline = Deadline[0:10]
             datetime_object = dateparser.parse(str(main_Deadline))
             if datetime_object != '':
-                Deadline = datetime_object.strftime("%Y-%m-%d")
-                SegField[24] = Deadline.strip()
+                try:
+                    Deadline = datetime_object.strftime("%Y-%m-%d")
+                    SegField[24] = Deadline.strip()
+                except:
+                    pass
 
             CPV_Code = Tender_detail_outerhtml.partition("CPV kode</td>")[2].partition("</td>")[0].replace('\n',' ').strip()
             CPV_Code = CPV_Code.replace('<br>','prem')
@@ -164,6 +167,7 @@ def check_date(SagField,get_htmlsource):
                 Global_var.expired += 1
         else:
             print("Deadline Not Given")
+            insert_in_Local(get_htmlsource, SagField)
             Global_var.deadline_Not_given += 1
     except Exception as e:
         exc_type , exc_obj , exc_tb = sys.exc_info()
