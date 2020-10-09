@@ -25,7 +25,7 @@ def scrap_data(get_htmlsource,Detail):
     Tender_detail_outerhtml = re.sub(' +', ' ', str(Tender_detail_outerhtml))
 
     SegField = []
-    for data in range(42):
+    for data in range(45):
         SegField.append('')
 
     error = True
@@ -97,7 +97,10 @@ def scrap_data(get_htmlsource,Detail):
             SegField[16] = '1'
             SegField[17] = '0'
             SegField[28] = Detail.partition("tender_link:")[2].partition(",Tender_title:")[0].strip()
-
+            SegField[20] = ""
+            SegField[21] = "" 
+            SegField[42] = SegField[7]
+            SegField[43] = ""
             CPV_Code = re.sub(' +', ' ', str(CPV_Code))
             ReplyStrings = CPV_Code
             if ReplyStrings != "":
